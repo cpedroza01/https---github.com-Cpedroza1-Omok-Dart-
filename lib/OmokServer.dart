@@ -72,8 +72,8 @@ Map getNew(http.Response response) {
 }
 
 String sendPlay(Map moves) {
-  var xMove = moves['x'];
-  var yMove = moves['y'];
+  var xMove = moves['x'] - 1;
+  var yMove = moves['y'] - 1;
   var pid = this.pid;
   var tempUrl = playUrl + '?pid=$pid' + '&x=$xMove' + '&y=$yMove';
   var uri = Uri.parse(tempUrl);

@@ -60,23 +60,35 @@ void main() async {
       //getting data from play
       playBody = server.getPlay(response);
       var ackMove = playBody['ack_move'];
-      var serverMove = playBody['move'];
-      var serverX = serverMove['x'];
-      var serverY = serverMove['y'];
       playerWin = ackMove['isWin'];
       playerDraw = ackMove['isDraw'];
-      serverWin = serverMove['isWin'];
-      serverDraw = serverMove['isDraw'];
-
-      //making server move
-      var stone = board.getServerMove(serverX, serverY);
       board.makePlayerMove(moves);
-      board.makeServerMove(stone);
-    
+      if(!playerWin){
+        var serverMove = playBody['move'];
+        var serverX = serverMove['x'];
+        var serverY = serverMove['y'];
+        serverWin = serverMove['isWin'];
+        serverDraw = serverMove['isDraw'];
+      
+        //making server move
+        var stone = board.getServerMove(serverX, serverY);
+        board.makeServerMove(stone);
+      }
+
     } while (!playerWin && !playerDraw && !serverDraw && !serverWin);
 
-    board.showBoard();
+
     board.gameOver(playerWin, playerDraw, serverWin, serverDraw, playBody);
+
+    if(playerWin){
+      board.highlightLastMove('O');
+    }else if(serverWin){
+      board.highlightLastMove('X');
+    }
+
+
+    board.showBoard();
+    
     
     
   }

@@ -11,6 +11,7 @@ class Board{
   var serverY;
   var serverX;
   var stone = [2];
+  var row;
 
   var y1 = ["*","*","*","*","*","*","*","*","*","*","*","*","*","*","*",];
   var y2 = ["*","*","*","*","*","*","*","*","*","*","*","*","*","*","*",];
@@ -68,7 +69,7 @@ class Board{
   }
 
 void getPlayerMove(Map move){
-  move['y'] = move['y'];
+  this.yStone = move['y'];
   this.xStone = move['x'];
 }
 
@@ -129,50 +130,50 @@ void makePlayerMove(Map move){
 }
 
 void makeServerMove(List stone){
-  if(stone[1] == 1){
-    var move = stone[0] - 1;
+  if(stone[1] == 0){
+    var move = stone[0];
     y1[move] = 'X';
-  }else if(stone[1] == 2){
-    var move = stone[0] - 1;
+  }else if(stone[1] == 1){
+    var move = stone[0];
     y2[move] = 'X';
-  }else if(stone[1] == 3){
-    var move = stone[0] - 1;
+  }else if(stone[1] == 2){
+    var move = stone[0];
     y3[move] = 'X';
-  }else if(stone[1] == 4){
-    var move = stone[0] - 1;
+  }else if(stone[1] == 3){
+    var move = stone[0] ;
     y4[move] = 'X';
-  }else if(stone[1] == 5){
-    var move = stone[0] - 1;
+  }else if(stone[1] == 4){
+    var move = stone[0] ;
     y5[move] = 'X';
-  }else if(stone[1] == 6){
-    var move = stone[0] - 1;
+  }else if(stone[1] == 5){
+    var move = stone[0];
     y6[move] = 'X';
-  }else if(stone[1] == 7){
-    var move = stone[0] - 1;
+  }else if(stone[1] == 6){
+    var move = stone[0];
     y7[move] = 'X';
-  }else if(stone[1] == 8){
-    var move = stone[0] - 1;
+  }else if(stone[1] == 7){
+    var move = stone[0];
     y8[move] = 'X';
-  }else if(stone[1] == 9){
-    var move = stone[0] - 1;
+  }else if(stone[1] == 8){
+    var move = stone[0];
     y9[move] = 'X';
-  }else if(stone[1] == 10){
-    var move = stone[0] - 1;
+  }else if(stone[1] == 9){
+    var move = stone[0];
     y10[move] = 'X';
-  }else if(stone[1] == 11){
-    var move = stone[0] - 1;
+  }else if(stone[1] == 10){
+    var move = stone[0];
     y11[move] = 'X';
-  }else if(stone[1] == 12){
-    var move = stone[0] - 1;
+  }else if(stone[1] == 11){
+    var move = stone[0];
     y12[move] = 'X';
-  }else if(stone[1] == 13){
-    var move = stone[0] - 1;
+  }else if(stone[1] == 12){
+    var move = stone[0];
     y13[move] = 'X';
-  }else if(stone[1] == 14){
-    var move = stone[0] - 1;
+  }else if(stone[1] == 13){
+    var move = stone[0];
     y14[move] = 'X';
-  }else if(stone[1] == 15){
-    var move = stone[0] - 1;
+  }else if(stone[1] == 14){
+    var move = stone[0];
     y15[move] = 'X';
   }
 }
@@ -180,15 +181,52 @@ void makeServerMove(List stone){
 void gameOver(playerWin, playerDraw, serverWin, serverDraw, body){
   if(playerWin){
     var ackMove = body['ack_move'];
-    var row = ackMove['row'];
+    this.row = ackMove['row'];
     print('Congratulations you won!!  Winning row: $row');
   }else if(playerDraw || serverDraw){
     print('It was a draw!');
   }else if(serverWin){
     var move = body['move'];
-    var row = move['row'];
+    this.row = move['row'];
     print('You lost to a robot!!  Winning row: $row');
   }
 }
-  
+
+  void highlightLastMove(text){
+    var lastX = this.row[0];
+    var lastY = this.row[1];
+
+    if(lastY == 0){
+      y1[lastX] = '\x1B[31m$text\x1B[0m';
+    }else if(lastY == 1){
+      y2[lastX] = '\x1B[31m$text\x1B[0m';
+    }else if(lastY == 2){
+      y3[lastX] = '\x1B[31m$text\x1B[0m';
+    }else if(lastY == 3){
+      y4[lastX] = '\x1B[31m$text\x1B[0m';
+    }else if(lastY == 4){
+      y5[lastX] = '\x1B[31m$text\x1B[0m';
+    }else if(lastY == 5){
+      y6[lastX] = '\x1B[31m$text\x1B[0m';
+    }else if(lastY == 6){
+      y7[lastX] = '\x1B[31m$text\x1B[0m';
+    }else if(lastY == 7){
+      y8[lastX] = '\x1B[31m$text\x1B[0m';
+    }else if(lastY == 8){
+      y9[lastX] = '\x1B[31m$text\x1B[0m';
+    }else if(lastY == 9){
+      y10[lastX] = '\x1B[31m$text\x1B[0m';
+    }else if(lastY == 10){
+      y11[lastX] = '\x1B[31m$text\x1B[0m';
+    }else if(lastY == 11){
+      y12[lastX] = '\x1B[31m$text\x1B[0m';
+    }else if(lastY == 12){
+      y13[lastX] = '\x1B[31m$text\x1B[0m';
+    }else if(lastY == 13){
+      y14[lastX] = '\x1B[31m$text\x1B[0m';
+    }else if(lastY == 14){
+      y15[lastX] = '\x1B[31m$text\x1B[0m';
+    }
+
+  }
 }
