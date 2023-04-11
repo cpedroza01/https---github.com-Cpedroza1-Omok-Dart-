@@ -68,64 +68,63 @@ class Board{
   }
 
 void getPlayerMove(Map move){
-  this.yStone = move[0];
-  this.xStone = move[1];
+  move['y'] = move['y'];
+  this.xStone = move['x'];
 }
 
 List getServerMove(x,y){
-  player.getMove();
   yStone = y;
   xStone = x;
   stone = [xStone, yStone];
   return stone;
 }
 
-void makePlayerMove(){
-  if(this.yStone == 1){
-    var move = xStone - 1;
-    y1[move] = 'O';
-  }else if(this.yStone == 2){
-    var move = xStone - 1;
-    y2[move] = 'O';
-  }else if(this.yStone == 3){
-    var move = xStone - 1;
-    y3[move] = 'O';
-  }else if(this.yStone == 4){
-    var move = xStone - 1;
-    y4[move] = 'O';
-  }else if(this.yStone == 5){
-    var move = xStone - 1;
-    y5[move] = 'O';
-  }else if(this.yStone == 6){
-    var move = xStone - 1;
-    y6[move] = 'O';
-  }else if(this.yStone == 7){
-    var move = xStone - 1;
-    y7[move] = 'O';
-  }else if(this.yStone == 8){
-    var move = xStone - 1;
-    y8[move] = 'O';
-  }else if(this.yStone == 9){
-    var move = xStone - 1;
-    y9[move] = 'O';
-  }else if(this.yStone == 10){
-    var move = xStone - 1;
-    y10[move] = 'O';
-  }else if(this.yStone == 11){
-    var move = xStone - 1;
-    y11[move] = 'O';
-  }else if(this.yStone == 12){
-    var move = xStone - 1;
-    y12[move] = 'O';
-  }else if(this.yStone == 13){
-    var move = xStone - 1;
-    y13[move] = 'O';
-  }else if(this.yStone == 14){
-    var move = xStone - 1;
-    y14[move] = 'O';
-  }else if(this.yStone == 15){
-    var move = xStone - 1;
-    y15[move] = 'O';
+void makePlayerMove(Map move){
+  if(move['y'] == 1){
+    var temp = move['x'] - 1;
+    y1[temp] = 'O';
+  }else if(move['y'] == 2){
+    var temp = move['x'] - 1;
+    y2[temp] = 'O';
+  }else if(move['y'] == 3){
+    var temp = move['x'] - 1;
+    y3[temp] = 'O';
+  }else if(move['y'] == 4){
+    var temp = move['x'] - 1;
+    y4[temp] = 'O';
+  }else if(move['y'] == 5){
+    var temp = move['x'] - 1;
+    y5[temp] = 'O';
+  }else if(move['y'] == 6){
+    var temp = move['x'] - 1;
+    y6[temp] = 'O';
+  }else if(move['y'] == 7){
+    var temp = move['x'] - 1;
+    y7[temp] = 'O';
+  }else if(move['y'] == 8){
+    var temp = move['x'] - 1;
+    y8[temp] = 'O';
+  }else if(move['y'] == 9){
+    var temp = move['x'] - 1;
+    y9[temp] = 'O';
+  }else if(move['y'] == 10){
+    var temp = move['x'] - 1;
+    y10[temp] = 'O';
+  }else if(move['y'] == 11){
+    var temp = move['x'] - 1;
+    y11[temp] = 'O';
+  }else if(move['y'] == 12){
+    var temp = move['x'] - 1;
+    y12[temp] = 'O';
+  }else if(move['y'] == 13){
+    var temp = move['x'] - 1;
+    y13[temp] = 'O';
+  }else if(move['y'] == 14){
+    var temp = move['x'] - 1;
+    y14[temp] = 'O';
+  }else if(move['y'] == 15){
+    var temp = move['x'] - 1;
+    y15[temp] = 'O';
   }
 }
 
@@ -175,6 +174,20 @@ void makeServerMove(List stone){
   }else if(stone[1] == 15){
     var move = stone[0] - 1;
     y15[move] = 'X';
+  }
+}
+
+void gameOver(playerWin, playerDraw, serverWin, serverDraw, body){
+  if(playerWin){
+    var ackMove = body['ack_move'];
+    var row = ackMove['row'];
+    print('Congratulations you won!!  Winning row: $row');
+  }else if(playerDraw || serverDraw){
+    print('It was a draw!');
+  }else if(serverWin){
+    var move = body['move'];
+    var row = move['row'];
+    print('You lost to a robot!!  Winning row: $row');
   }
 }
   

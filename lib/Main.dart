@@ -26,6 +26,8 @@ void main() async {
   var playerDraw = false;
   var serverWin = false;
   var serverDraw = false;
+  var winningRow;
+  var playBody;
 
   
   url = server.getService();
@@ -56,7 +58,7 @@ void main() async {
       response = await http.get(uri);
 
       //getting data from play
-      var playBody = server.getPlay(response);
+      playBody = server.getPlay(response);
       var ackMove = playBody['ack_move'];
       var serverMove = playBody['move'];
       var serverX = serverMove['x'];
@@ -65,12 +67,17 @@ void main() async {
       playerDraw = ackMove['isDraw'];
       serverWin = serverMove['isWin'];
       serverDraw = serverMove['isDraw'];
+
       //making server move
       var stone = board.getServerMove(serverX, serverY);
-      board.makePlayerMove();
+      board.makePlayerMove(moves);
       board.makeServerMove(stone);
     
     } while (!playerWin && !playerDraw && !serverDraw && !serverWin);
+
+    board.showBoard();
+    board.gameOver(playerWin, playerDraw, serverWin, serverDraw, playBody);
+    
     
   }
 }

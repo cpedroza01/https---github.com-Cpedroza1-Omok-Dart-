@@ -28,9 +28,6 @@ Player player = new Player();
 
 
 //we want the client to post and get.
-void serverController() async {
-
-}
 
 Uri getService(){
   print("Please enter the url of the web service: ");
