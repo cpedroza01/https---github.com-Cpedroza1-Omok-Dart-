@@ -1,9 +1,15 @@
+import 'package:OmokGame/OmokServer.dart';
+
 import 'Player.dart';
 class Board{
 
   Player player = new Player();
+  OmokServer server = new OmokServer();
+
   var xStone;
   var yStone;
+  var serverY;
+  var serverX;
   var stone = [2];
 
   var y1 = ["*","*","*","*","*","*","*","*","*","*","*","*","*","*","*",];
@@ -61,14 +67,20 @@ class Board{
     print('15 '+ y15.toString());
   }
 
-void getPlayerMove(){
-  player.getMove();
-  yStone = this.player.yMove;
-  xStone = this.player.xMove;
-  stone = [xStone, yStone];
+void getPlayerMove(Map move){
+  this.yStone = move[0];
+  this.xStone = move[1];
 }
 
-void makeMove(){
+List getServerMove(x,y){
+  player.getMove();
+  yStone = y;
+  xStone = x;
+  stone = [xStone, yStone];
+  return stone;
+}
+
+void makePlayerMove(){
   if(this.yStone == 1){
     var move = xStone - 1;
     y1[move] = 'O';
@@ -114,6 +126,55 @@ void makeMove(){
   }else if(this.yStone == 15){
     var move = xStone - 1;
     y15[move] = 'O';
+  }
+}
+
+void makeServerMove(List stone){
+  if(stone[1] == 1){
+    var move = stone[0] - 1;
+    y1[move] = 'X';
+  }else if(stone[1] == 2){
+    var move = stone[0] - 1;
+    y2[move] = 'X';
+  }else if(stone[1] == 3){
+    var move = stone[0] - 1;
+    y3[move] = 'X';
+  }else if(stone[1] == 4){
+    var move = stone[0] - 1;
+    y4[move] = 'X';
+  }else if(stone[1] == 5){
+    var move = stone[0] - 1;
+    y5[move] = 'X';
+  }else if(stone[1] == 6){
+    var move = stone[0] - 1;
+    y6[move] = 'X';
+  }else if(stone[1] == 7){
+    var move = stone[0] - 1;
+    y7[move] = 'X';
+  }else if(stone[1] == 8){
+    var move = stone[0] - 1;
+    y8[move] = 'X';
+  }else if(stone[1] == 9){
+    var move = stone[0] - 1;
+    y9[move] = 'X';
+  }else if(stone[1] == 10){
+    var move = stone[0] - 1;
+    y10[move] = 'X';
+  }else if(stone[1] == 11){
+    var move = stone[0] - 1;
+    y11[move] = 'X';
+  }else if(stone[1] == 12){
+    var move = stone[0] - 1;
+    y12[move] = 'X';
+  }else if(stone[1] == 13){
+    var move = stone[0] - 1;
+    y13[move] = 'X';
+  }else if(stone[1] == 14){
+    var move = stone[0] - 1;
+    y14[move] = 'X';
+  }else if(stone[1] == 15){
+    var move = stone[0] - 1;
+    y15[move] = 'X';
   }
 }
   

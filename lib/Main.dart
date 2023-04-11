@@ -13,6 +13,7 @@ void main() async {
   OmokServer server = new OmokServer();
   Player player = new Player();
 
+
   var url;
   var tempUrl;
   var infoUrl = 'https://www.cs.utep.edu/cheon/cs3360/project/omok//info';
@@ -21,6 +22,10 @@ void main() async {
   var pid;
   var response;
   var uri;
+  var playerWin = false;
+  var playerDraw = false;
+  var serverWin = false;
+  var serverDraw = false;
 
   
   url = server.getService();
@@ -36,14 +41,37 @@ void main() async {
     var tempNewUrl = server.sendStrategy();
     uri = Uri.parse(tempNewUrl);
     response = await http.get(uri); 
-    server.getNew(response);               
-    Map moves = player.getMove();
+    var newBody = server.getNew(response);
+    var newGame = newBody['response'];
+    
+    //while loop while iswin and is draw are false
+    Board board = new Board(newGame);
+    do {
+      board.showBoard();
+      Map moves = player.getMove();
 
+      //send moves to play
+      var tempPlayUrl = server.sendPlay(moves);
+      uri = Uri.parse(tempPlayUrl);
+      response = await http.get(uri);
 
-    var tempPlayUrl = server.sendPlay(moves);
-    uri = Uri.parse(tempPlayUrl);
-    response = await http.get(uri);
-    server.getPlay(response); 
+      //getting data from play
+      var playBody = server.getPlay(response);
+      var ackMove = playBody['ack_move'];
+      var serverMove = playBody['move'];
+      var serverX = serverMove['x'];
+      var serverY = serverMove['y'];
+      playerWin = ackMove['isWin'];
+      playerDraw = ackMove['isDraw'];
+      serverWin = serverMove['isWin'];
+      serverDraw = serverMove['isDraw'];
+      //making server move
+      var stone = board.getServerMove(serverX, serverY);
+      board.makePlayerMove();
+      board.makeServerMove(stone);
+    
+    } while (!playerWin && !playerDraw && !serverDraw && !serverWin);
+    
   }
 }
 

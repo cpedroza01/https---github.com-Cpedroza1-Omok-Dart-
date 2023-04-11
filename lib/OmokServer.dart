@@ -16,25 +16,16 @@ var infoUrl = 'https://www.cs.utep.edu/cheon/cs3360/project/omok//info';
 var newUrl = 'https://www.cs.utep.edu/cheon/cs3360/project/omok//new';
 var playUrl = 'https://www.cs.utep.edu/cheon/cs3360/project/omok//play';
 var pid;
-var client = http.Client();
+var isWin;
+var isDraw;
+var ackMove;
+var serverMove;
+var winningRow;
+var serverX;
+var serverY;
 
 Player player = new Player();
 
-
-
-// void runServerCheck(){
-//   getService();
-//   getInfo();
-//   if(this.status = true){
-//     this.playerSelect();
-//     this.serverClient();
-//     this.sendStrategy();
-//     this.getNew();
-//     Map moves = player.getMove();
-//     this.sendPlay(moves);
-//     this.getPlay();
-//   }
-// }
 
 //we want the client to post and get.
 void serverController() async {
@@ -76,11 +67,11 @@ String sendStrategy() {
   return tempUrl;
 }
 
-void getNew(http.Response response) {
+Map getNew(http.Response response) {
   var body = jsonDecode(response.body) as Map;
-  print(response.body);
   this.pid = body['pid'];
-  print(this.pid);
+  return body;
+  
 }
 
 String sendPlay(Map moves) {
@@ -94,9 +85,9 @@ String sendPlay(Map moves) {
   return tempUrl;
 }
 
-void getPlay(http.Response response) {
-  print(this.pid);
-  print(response.body);
+Map getPlay(http.Response response) {
+  var body = jsonDecode(response.body) as Map;
+  return body;
 }
 
 
