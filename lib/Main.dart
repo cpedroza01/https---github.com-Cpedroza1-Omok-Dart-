@@ -36,14 +36,14 @@ void main() async {
     var tempNewUrl = server.sendStrategy();
     uri = Uri.parse(tempNewUrl);
     response = await http.get(uri); 
-    server.getNew(response);               //async
+    server.getNew(response);               
     Map moves = player.getMove();
 
 
     var tempPlayUrl = server.sendPlay(moves);
     uri = Uri.parse(tempPlayUrl);
     response = await http.get(uri);
-    server.getPlay(response);              //async
+    server.getPlay(response); 
   }
 }
 
