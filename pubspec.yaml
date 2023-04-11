@@ -1,0 +1,7 @@
+name: OmokGame
+
+dependencies:
+  http: ^0.13.5
+  
+environment:
+  sdk: '^2.12.0'
