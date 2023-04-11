@@ -12,10 +12,9 @@ var strategy;
 var url;
 var urlProcess;
 var status;
-var tempUrl;
-var infoUrl = '//info';
-var newUrl = '//new';
-var playUrl = '//play';
+var infoUrl = 'https://www.cs.utep.edu/cheon/cs3360/project/omok//info';
+var newUrl = 'https://www.cs.utep.edu/cheon/cs3360/project/omok//new';
+var playUrl = 'https://www.cs.utep.edu/cheon/cs3360/project/omok//play';
 var pid;
 var client = http.Client();
 
@@ -37,24 +36,20 @@ Player player = new Player();
 //   }
 // }
 
-void serverClient(Uri url) async {
-  this.tempUrl = this.url + infoUrl;
-  var response = await this.client.get(Uri.parse(this.tempUrl));
-  print(response.body);
-    
+//we want the client to post and get.
+void serverController() async {
+
 }
 
 Uri getService(){
   print("Please enter the url of the web service: ");
   this.url = stdin.readLineSync().toString();
-  this.tempUrl = this.url + this.infoUrl;
-  this.urlProcess = Uri.parse(tempUrl);
+  this.urlProcess = Uri.parse(infoUrl);
   return urlProcess;
 }
 
-void getInfo() async {
-  var response = await http.get(this.urlProcess); 
-  stratList = jsonDecode(response.body) as Map;
+void getInfo(http.Response response)  {
+  stratList = jsonDecode(response.body);
   if (response.statusCode >= 200){
     this.status = true;
   }else{
@@ -63,7 +58,7 @@ void getInfo() async {
   
 }
 
-void playerSelect() async{
+void playerSelect() {
   print('Please choose your strategy: 1. Smart  2. Random');
   this.strategyChoice = int.parse(stdin.readLineSync()!);
 
@@ -74,32 +69,32 @@ void playerSelect() async{
   }
 }
 
-void sendStrategy() async {
-  this.tempUrl = this.url + this.newUrl;
-  this.tempUrl = tempUrl + '?strategy=$strategy';
-  var uri = await Uri.parse(tempUrl);
+String sendStrategy() {
+  var tempUrl = newUrl + '?strategy=$strategy';
+  var uri = Uri.parse(tempUrl);
   http.post(uri);
+  return tempUrl;
 }
 
-void getNew() async {
-  urlProcess = await Uri.parse(tempUrl);
-  var response = await http.get(this.urlProcess);
+void getNew(http.Response response) {
   var body = jsonDecode(response.body) as Map;
+  print(response.body);
   this.pid = body['pid'];
+  print(this.pid);
 }
 
-void sendPlay(Map moves) async {
-  this.tempUrl = this.url + playUrl;
+String sendPlay(Map moves) {
   var xMove = moves['x'];
   var yMove = moves['y'];
-  this.tempUrl = tempUrl + '?pid=$pid' + '&x=$xMove' + '&y=$yMove';
-  var uri = await Uri.parse(this.tempUrl);
+  var pid = this.pid;
+  var tempUrl = playUrl + '?pid=$pid' + '&x=$xMove' + '&y=$yMove';
+  var uri = Uri.parse(tempUrl);
   http.post(uri);
+  print(tempUrl);
+  return tempUrl;
 }
 
-void getPlay() async {
-  urlProcess = await Uri.parse(this.tempUrl);
-  var response = await http.get(this.urlProcess);
+void getPlay(http.Response response) {
   print(this.pid);
   print(response.body);
 }

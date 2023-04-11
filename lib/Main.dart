@@ -15,24 +15,35 @@ void main() async {
 
   var url;
   var tempUrl;
-  var infoUrl = '//info';
-  var newUrl = '//new';
-  var playUrl = '//play';
+  var infoUrl = 'https://www.cs.utep.edu/cheon/cs3360/project/omok//info';
+  var newUrl = 'https://www.cs.utep.edu/cheon/cs3360/project/omok//new';
+  var playUrl = 'https://www.cs.utep.edu/cheon/cs3360/project/omok//play';
   var pid;
+  var response;
+  var uri;
 
   
   url = server.getService();
-  server.getInfo();
+  
+  //get body from info url
+  uri = Uri.parse(infoUrl);
+  response = await http.get(uri);
+  server.getInfo(response);                
 
 
   if(server.status = true){
     server.playerSelect();
-    server.serverClient(url);
-    server.sendStrategy();
-    server.getNew();
+    var tempNewUrl = server.sendStrategy();
+    uri = Uri.parse(tempNewUrl);
+    response = await http.get(uri); 
+    server.getNew(response);               //async
     Map moves = player.getMove();
-    server.sendPlay(moves);
-    server.getPlay();
+
+
+    var tempPlayUrl = server.sendPlay(moves);
+    uri = Uri.parse(tempPlayUrl);
+    response = await http.get(uri);
+    server.getPlay(response);              //async
   }
 }
 
