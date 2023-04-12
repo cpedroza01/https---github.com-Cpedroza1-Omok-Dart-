@@ -41,8 +41,8 @@ class Controller {
       while(validMove == false){
         try{
         move = ui.askMove();
-        if(move['x'] > 14 || move['x'] < 0 || move['y'] > 14 || move['y'] < 0){
-          print('Please enter a valid number between 0-14.');
+        if(move['x'] > 14 || move['x'] < 0 || move['y'] > 14 || move['y'] < 0 || board.board[move['x']][move['y']] != '*'){
+          print('Please enter a valid number or empty location');
           validMove = false;
           continue;
         }else{

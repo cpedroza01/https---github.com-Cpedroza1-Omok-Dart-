@@ -49,4 +49,6 @@ class Board {
     board[row[6]][row[7]] = '\x1B[31m$player\x1B[0m';
     board[row[8]][row[9]] = '\x1B[31m$player\x1B[0m';
   }
+
+  
 }
