@@ -22,9 +22,20 @@ class ConsoleUI {
   askStrategy(info) {
     var s = info['strategies'];
     print("Select the server strategy (enter a number): 1. ${s[0]} 2. ${s[1]}");
-    var line = stdin.readLineSync();
-    var i = int.parse(line!);
-    return s[i-1];
+    do {
+      try {
+        var line = stdin.readLineSync();
+        var i = int.parse(line!);
+        if (i != 1 && i != 2) {
+          throw FormatException();
+        }
+
+        return s[i-1];// returns if input is 1 or 2
+
+      } catch (FormatException) {
+        print('Invalid Input');
+      }
+    }while(true);
   }
 
   ///asks the user to make their move and returns a Map of the move
