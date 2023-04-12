@@ -3,6 +3,7 @@ class Board {
   var pid;
   var board;
 
+  ///the game board
   Board(strategy, pid) {
     this.board = [["*","*","*","*","*","*","*","*","*","*","*","*","*","*","*",],
                   ["*","*","*","*","*","*","*","*","*","*","*","*","*","*","*",],
@@ -21,6 +22,7 @@ class Board {
                   ["*","*","*","*","*","*","*","*","*","*","*","*","*","*","*",]];
   }
 
+  ///Will display the board
   void showBoard() {
     print(" X  0  1  2  3  4  5  6  7  8  9 10 11 12 13 14");
     print("Y -----------------------------------------------");
@@ -32,10 +34,13 @@ class Board {
     }
   }
 
+  ///Takes the move and changes the board 
   void makeMove(move, player) {
     board[move['x']][move['y']] = player;
   }
 
+
+  ///highlights the winning row
   void highlightLastMove(player, move) {
     var row = move['row'];
     board[row[0]][row[1]] = '\x1B[31m$player\x1B[0m';

@@ -6,6 +6,7 @@ class ConsoleUI {
     print(msg);
   }
 
+  ///asks user for server url
   askServerUrl() {
     print("Enter server URL (default: https://www.cs.utep.edu/cheon/cs3360/project/omok/): ");
     var url = stdin.readLineSync();
@@ -17,6 +18,7 @@ class ConsoleUI {
 
   }
 
+  ///asks the user to select a strategy
   askStrategy(info) {
     var s = info['strategies'];
     print("Select the server strategy (enter a number): 1. ${s[0]} 2. ${s[1]}");
@@ -25,20 +27,25 @@ class ConsoleUI {
     return s[i-1];
   }
 
+  ///asks the user to make their move and returns a Map of the move
   askMove() {
-    print("Please make your move");
-    print("X:");
-    var x = int.parse(stdin.readLineSync()!);
-    print("Y:");
-    var y = int.parse(stdin.readLineSync()!);
-
+    var x;
+    var y;
     Map moveMap = Map();
+
+    print("Please make your move.  Any number between 0-14.");
+    print("X:");
+    x = int.parse(stdin.readLineSync()!);
+    print("Y:");
+    y = int.parse(stdin.readLineSync()!);
+  
     moveMap['x'] = x;
     moveMap['y'] = y;
-
+    
     return moveMap;
   }
 
+  ///checks if the move made was a winning move or if it was a draw
   bool check(play) {
     if (play['isWin'] || play['isDraw']) {
       return true;
@@ -48,6 +55,7 @@ class ConsoleUI {
     }
   }
 
+  ///when someone wins this will print a message with the row
   void gameOver(Board board, play) {
     var ackMove = play['ack_move'];
     var move = play['move'];

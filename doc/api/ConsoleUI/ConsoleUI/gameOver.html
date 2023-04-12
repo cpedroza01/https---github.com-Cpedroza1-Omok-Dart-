@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the gameOver method from the ConsoleUI class, for the Dart programming language.">
+  <title>gameOver method - ConsoleUI class - ConsoleUI library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../../static-assets/github.css?v1">
+  <link rel="stylesheet" href="../../static-assets/styles.css?v1">
+  <link rel="icon" href="../../static-assets/favicon.png?v1">
+
+  
+</head>
+
+
+<body data-base-href="../../" data-using-base-href="false" class="light-theme">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <span id="sidenav-left-toggle" class="material-symbols-outlined" role="button" tabindex="0">menu</span>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">OmokGame</a></li>
+    <li><a href="../../ConsoleUI/ConsoleUI-library.html">ConsoleUI</a></li>
+    <li><a href="../../ConsoleUI/ConsoleUI-class.html">ConsoleUI</a></li>
+    <li class="self-crumb">gameOver method</li>
+  </ol>
+  <div class="self-name">gameOver</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+  <div class="toggle" id="theme-button">
+    <label for="theme">
+      <input type="checkbox" id="theme" value="light-theme">
+      <span class="material-symbols-outlined">
+        brightness_4
+      </span>
+    </label>
+  </div>
+</header>
+<main>
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-method">gameOver</span> method 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+
+<span class="returntype">void</span>
+<span class="name ">gameOver</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="gameOver-param-board"><span class="type-annotation"><a href="../../Board/Board-class.html">Board</a></span> <span class="parameter-name">board</span>, </span></li>
+<li><span class="parameter" id="gameOver-param-play"><span class="type-annotation">dynamic</span> <span class="parameter-name">play</span></span></li>
+</ol>)
+
+      
+
+    </section>
+    
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">void gameOver(Board board, play) {
+  var ackMove = play[&#39;ack_move&#39;];
+  var move = play[&#39;move&#39;];
+  if(ackMove[&#39;isWin&#39;]) {
+    board.highlightLastMove(&#39;O&#39;, play[&#39;ack_move&#39;]);
+    board.showBoard();
+    print(&#39;Congratulations you won!!  Winning row: ${ackMove[&#39;row&#39;]}&#39;);
+  }else if(ackMove[&#39;isDraw&#39;] || move[&#39;isDraw&#39;]) {
+    print(&#39;It was a draw!&#39;);
+  }else if(move[&#39;isWin&#39;]){
+    board.highlightLastMove(&#39;X&#39;, play[&#39;move&#39;]);
+    board.showBoard();
+    print(&#39;You lost to a robot!!  Winning row: ${move[&#39;row&#39;]}&#39;);
+  }
+}</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../../index.html">OmokGame</a></li>
+  <li><a href="../../ConsoleUI/ConsoleUI-library.html">ConsoleUI</a></li>
+  <li><a href="../../ConsoleUI/ConsoleUI-class.html">ConsoleUI</a></li>
+  <li class="self-crumb">gameOver method</li>
+</ol>
+
+
+    <h5>ConsoleUI class</h5>
+    <ol>
+
+        <li class="section-title"><a href="../../ConsoleUI/ConsoleUI-class.html#constructors">Constructors</a></li>
+          <li><a href="../../ConsoleUI/ConsoleUI/ConsoleUI.html">ConsoleUI</a></li>
+
+
+        <li class="section-title inherited">
+          <a href="../../ConsoleUI/ConsoleUI-class.html#instance-properties">Properties</a>
+        </li>
+          <li class="inherited"><a href="https://api.dart.dev/stable/2.19.4/dart-core/Object/hashCode.html">hashCode</a></li>
+          <li class="inherited"><a href="https://api.dart.dev/stable/2.19.4/dart-core/Object/runtimeType.html">runtimeType</a></li>
+
+        <li class="section-title"><a href="../../ConsoleUI/ConsoleUI-class.html#instance-methods">Methods</a></li>
+          <li><a href="../../ConsoleUI/ConsoleUI/askMove.html">askMove</a></li>
+          <li><a href="../../ConsoleUI/ConsoleUI/askServerUrl.html">askServerUrl</a></li>
+          <li><a href="../../ConsoleUI/ConsoleUI/askStrategy.html">askStrategy</a></li>
+          <li><a href="../../ConsoleUI/ConsoleUI/check.html">check</a></li>
+          <li><a href="../../ConsoleUI/ConsoleUI/gameOver.html">gameOver</a></li>
+          <li class="inherited"><a href="https://api.dart.dev/stable/2.19.4/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
+          <li><a href="../../ConsoleUI/ConsoleUI/showMessage.html">showMessage</a></li>
+          <li class="inherited"><a href="https://api.dart.dev/stable/2.19.4/dart-core/Object/toString.html">toString</a></li>
+
+        <li class="section-title inherited"><a href="../../ConsoleUI/ConsoleUI-class.html#operators">Operators</a></li>
+          <li class="inherited"><a href="https://api.dart.dev/stable/2.19.4/dart-core/Object/operator_equals.html">operator ==</a></li>
+
+
+
+
+</ol>
+
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    OmokGame
+      0.0.0-unknown
+  </span>
+
+  
+</footer>
+
+
+
+<script src="../../static-assets/highlight.pack.js?v1"></script>
+<script src="../../static-assets/docs.dart.js"></script>
+
+
+
+</body>
+
+</html>
+
