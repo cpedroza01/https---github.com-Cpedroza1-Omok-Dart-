@@ -44,5 +44,9 @@ class Board {
   void highlightLastMove(player, move) {
     var row = move['row'];
     board[row[0]][row[1]] = '\x1B[31m$player\x1B[0m';
+    board[row[2]][row[3]] = '\x1B[31m$player\x1B[0m';
+    board[row[4]][row[5]] = '\x1B[31m$player\x1B[0m';
+    board[row[6]][row[7]] = '\x1B[31m$player\x1B[0m';
+    board[row[8]][row[9]] = '\x1B[31m$player\x1B[0m';
   }
 }
