@@ -18,4 +18,21 @@ class WebServiceInterface {
     var play = json.decode(response.body);
     return play;
   }
+
+  bool checkURL(http.Response response) {
+    var body;
+    try {
+      body = json.decode(response.body);
+    }catch(FormatException){
+      print("Invalid URL");
+      return false;
+    }
+    if(body != null) {
+      if(body.containsKey('size') || body.containsKey('response')) {
+        return true;
+      }
+    }
+    print("Invalid URL");
+    return false;
+  }
 }
