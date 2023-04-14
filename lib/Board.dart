@@ -36,7 +36,7 @@ class Board {
 
   ///Takes the move and changes the board 
   void makeMove(move, player) {
-    board[move['x']][move['y']] = player;
+    board[move['y']][move['x']] = player;
   }
 
 
